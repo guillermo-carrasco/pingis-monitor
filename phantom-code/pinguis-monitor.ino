@@ -14,7 +14,7 @@
 
 bool IS_BUSY = false;
 unsigned int motionInTime[NUM_MESUREMENTS];
-unsigned long doMesure = 0;
+long doMesure = 0;
 
 // Buttons logic/helpers
 bool red_pressed = false;
@@ -40,7 +40,7 @@ void setup() {
 
 void loop() {
     // take mesurements every 2 seconds only, but don't block the main thread with a delay
-    if (doMesure - millis() <= 0) {
+    if (doMesure <= millis()) {
         int val = digitalRead(SENSOR_INPUT);
         shiftAndAppend(val);
         int percent = numberOfPositives();
@@ -98,9 +98,6 @@ void setRedCounter(int val) {
 void setWhiteCounter(int val) {
     whiteCounter = val;
     Particle.publish("WhiteCounter", String(val));
-    Particle.publish("mesurement", String(doMesure));
-    Particle.publish("time", String(millis()));
-    Particle.publish("difference", String(doMesure - millis()));
 }
 
 
