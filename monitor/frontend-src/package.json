@@ -26,7 +26,8 @@
     "react-router-dom": "^4.1.1",
     "redux": "^3.7.2",
     "redux-observable": "^0.16.0",
-    "rxjs": "^5.4.2"
+    "rxjs": "^5.4.2",
+    "seamless-immutable": "^7.1.2"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

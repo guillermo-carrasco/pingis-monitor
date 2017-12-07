@@ -2,13 +2,12 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import 'common/scss/global.scss'
 
-import ItWorks from '../components/ItWorks'
-
 import store from '../state/store'
+import { PingPongStatus } from '../components/PingPongStatus'
 
 const App = () => (
   <Provider store={store}>
-    <ItWorks />
+    <PingPongStatus />
   </Provider>
 )
 

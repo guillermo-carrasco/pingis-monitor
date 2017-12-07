@@ -1,28 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bootstrap 3 Template</title>
+    <title>iZettle Ping Pong table</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Bootstrap core CSS -->
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link rel="stylesheet" href="../static/css/monitor.css">
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.js"></script>
-      <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" href="../static/css/style.css">
   </head>
     <body>
       <!-- Begin page content -->
-      <div class="container">
-        <div class="page-header">
-          <h1 id='tableStatus'>Pingpong table status: Free</h1>
-        </div>
-        <div class="col-md-6 score" id=''>0</div>
-        <div class="col-md-6 score" id='redScore'>0</div>
-      </div>
+      <div id="root"></div>
+      <script type="text/javascript" src="{{ scriptFile }}"></script>
     </body>
-    <script type="text/javascript" src="../static/js/monitor.js"></script>
 </html>

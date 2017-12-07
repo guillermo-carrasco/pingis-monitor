@@ -1,5 +1,6 @@
 import gevent
 import yaml
+import os
 
 from flask import Flask, render_template, request, Response
 from gevent.queue import Queue
@@ -63,7 +64,12 @@ def subscribe():
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    if os.environ.get('ENV', 'development') == 'development':
+        scriptFile = 'http://localhost:8889/app.js'
+    else:
+        scriptFile = '/static/app.js'
+
+    return render_template('index.html', scriptFile = scriptFile)
 
 if __name__ == "__main__":
     app.debug = True

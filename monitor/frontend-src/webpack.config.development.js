@@ -14,7 +14,7 @@ config.plugins.push(
 config.devServer = {
   contentBase: contentBasePath,
   historyApiFallback: true,
-  port: process.env.PORT,
+  port: process.env.PORT || 8889,
   compress: true,
   inline: true,
   hot: true,
