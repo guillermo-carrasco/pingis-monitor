@@ -20,4 +20,5 @@ export const socket$ = Observable.create((observable) => {
   // }
   }
 })
+  .do(console.log)
   .share()

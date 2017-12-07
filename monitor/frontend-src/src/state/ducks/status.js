@@ -11,7 +11,7 @@ const tableStatusChange = payload => ({
 })
 
 const initialState = Immutable.from({
-  status: 'FREE',
+  status: 'Free',
 })
 
 export default (state = initialState, action) => {
@@ -25,7 +25,6 @@ export default (state = initialState, action) => {
 }
 
 export const tableStatusSubscription = socket$
-  .do(console.log)
   .filter(action => action.name === 'TableStatus')
   .subscribe((event) => {
     store.dispatch(tableStatusChange(event.data))
