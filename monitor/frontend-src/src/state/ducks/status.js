@@ -25,7 +25,7 @@ export default (state = initialState, action) => {
 }
 
 export const tableStatusSubscription = socket$
-  .filter(action => action.name === 'TableStatus')
+  .filter(action => action.event === 'TableStatus')
   .subscribe((event) => {
     store.dispatch(tableStatusChange(event.data))
   })

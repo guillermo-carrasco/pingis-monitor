@@ -35,12 +35,12 @@ export default (state = initialState, action) => {
 }
 
 export const whiteScoreChangeSubscription = socket$
-  .filter(action => action.name === 'WhiteCounter')
+  .filter(action => action.event === 'WhiteCounter')
   .subscribe((event) => {
     store.dispatch(whiteChange(event.data))
   })
 export const redScoreChangeSubscription = socket$
-  .filter(action => action.name === 'RedCounter')
+  .filter(action => action.event === 'RedCounter')
   .subscribe((event) => {
     store.dispatch(redChange(event.data))
   })
