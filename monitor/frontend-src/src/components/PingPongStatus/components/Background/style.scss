@@ -1,0 +1,41 @@
+@keyframes live {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes die {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.floatingCirclesContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  background-color: #283563;
+  z-index: -1;
+}
+
+.circle {
+  position: absolute;
+  opacity: 1;
+  border-radius: 50%;
+  animation: live 5000ms forwards;
+}
+
+.dying {
+  animation: die 5000ms forwards;
+}

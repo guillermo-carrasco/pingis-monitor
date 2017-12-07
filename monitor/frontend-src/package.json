@@ -27,7 +27,8 @@
     "redux": "^3.7.2",
     "redux-observable": "^0.16.0",
     "rxjs": "^5.4.2",
-    "seamless-immutable": "^7.1.2"
+    "seamless-immutable": "^7.1.2",
+    "uuid": "^3.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
