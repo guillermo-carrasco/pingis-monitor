@@ -1,0 +1,63 @@
+// Colors
+$color-primary: #000;
+$color-secondary: #474747;
+
+$color-secondary-complementary-dark: #4A5C6C;
+
+$color-section-almost-white: lighten($color-secondary-complementary-dark, 60%);
+
+$color-success: #00c53f;
+$color-error: #de0101;
+$color-disabled: #aaa;
+$color-border: lighten($color-secondary-complementary-dark, 55%);
+$color-border-light: lighten($color-secondary-complementary-dark, 62%);
+$color-almost-black: #444;
+
+
+
+
+
+// Fonts
+$base-font-color: #111;
+
+$font-primary: sans-serif;
+$font-secondary: sans-serif;
+
+$nb-base-font-size: 1.1rem;
+
+
+
+
+
+
+// Spacing
+$nb-spacing-unit: 1rem;
+$nb-spacing-unit-xl: $nb-spacing-unit * 3;
+$nb-spacing-unit-lg: $nb-spacing-unit * 2;
+$nb-spacing-unit-sm: $nb-spacing-unit / 2;
+$nb-spacing-unit-xs: $nb-spacing-unit / 4;
+
+$nb-soft-sizes: (
+  sm: $nb-spacing-unit-sm,
+  md: $nb-spacing-unit,
+  lg: $nb-spacing-unit-lg
+) !default;
+
+
+
+// Responsive
+$nb-breakpoints: (
+  xs: 480px,
+  sm: 720px,
+  md: 960px,
+  lg: 1200px
+);
+
+$nb-site-wrap-width: 80rem;
+
+
+$nb-breakpoint-class: "-bp-";
+
+// Import nebula settings last since we want to override default values
+// instead of overriding variables
+@import "~nebula-css/nebula-css/settings";

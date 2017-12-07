@@ -1,0 +1,29 @@
+{
+  "extends": "airbnb",
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "rules": {
+    "react/jsx-filename-extension": 0,
+    "jsx-a11y/href-no-hash": 0,
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "never"
+      }
+    ],
+    "semi": ["error", "never"]
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "webpack.config.base.js"
+      }
+    }
+  }
+}
