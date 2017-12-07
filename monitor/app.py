@@ -88,5 +88,6 @@ def index():
 
 if __name__ == "__main__":
     app.debug = True
-    server = WSGIServer(("", 5000), app)
+    port = int(os.environ.get('PORT', 5000))
+    server = WSGIServer(("", port), app)
     server.serve_forever()
