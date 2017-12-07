@@ -9,10 +9,10 @@ from gevent.wsgi import WSGIServer
 app = Flask(__name__)
 
 subscriptions = []
+red_score = 0
+white_score = 0
+table_status = "Free"
 
-#######################
-## Server Sent Events #
-#######################
 
 class ServerSentEvent(object):
 
@@ -21,9 +21,9 @@ class ServerSentEvent(object):
         self.event = None
         self.id = None
         self.desc_map = {
-            self.data : "data",
-            self.event : "event",
-            self.id : "id"
+            self.data: "data",
+            self.event: "event",
+            self.id: "id"
         }
 
     def encode(self):
@@ -35,9 +35,23 @@ class ServerSentEvent(object):
         return "%s\n\n" % "\n".join(lines)
 
 
+def save_status(data):
+    global table_status
+    global white_score
+    global red_score
+    if data.get('event') == 'TableStatus':
+        table_status = data.get('data')
+    elif data.get('event') == 'RedCounter':
+        red_score = data.get('data')
+    elif data.get('event') == 'WhiteCounter':
+        white_score = data.get('data')
+
+
 @app.route("/publish", methods=['POST'])
 def publish():
     data = yaml.safe_load(request.data)
+    save_status(data)
+
     def notify():
         for sub in subscriptions[:]:
             sub.put(data)
@@ -56,7 +70,7 @@ def subscribe():
                 result = q.get()
                 ev = ServerSentEvent(str(result))
                 yield ev.encode()
-        except GeneratorExit: # Or maybe use flask signals
+        except GeneratorExit:  # Or maybe use flask signals
             subscriptions.remove(q)
 
     return Response(gen(), mimetype="text/event-stream")
@@ -69,7 +83,8 @@ def index():
     else:
         scriptFile = '/static/app.js'
 
-    return render_template('index.html', scriptFile = scriptFile)
+    return render_template('index.html', scriptFile=scriptFile)
+
 
 if __name__ == "__main__":
     app.debug = True
