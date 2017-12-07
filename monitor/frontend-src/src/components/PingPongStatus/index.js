@@ -6,11 +6,17 @@ import Background from './components/Background'
 
 import classes from './style.scss'
 
+import pingPongIcon from './ping-pong.svg'
+
 export class PingPongStatus extends React.Component {
   render() {
     return (
       <div className={classes.container}>
-        <Background />
+      <Background />
+        <h1 className={classes.headline}>
+          The ping pong table
+          <div className={classes.icon} dangerouslySetInnerHTML={{ __html: pingPongIcon }} />
+        </h1>
         <Status />
         <ScoreBoard />
       </div>
