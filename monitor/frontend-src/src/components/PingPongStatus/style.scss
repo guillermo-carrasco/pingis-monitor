@@ -1,6 +1,9 @@
 @import "~common/scss/settings";
 
 .container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
   height: 100vh;
   color: #fff;
   padding: 50px;
