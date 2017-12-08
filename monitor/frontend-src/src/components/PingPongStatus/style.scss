@@ -6,7 +6,11 @@
   flex-direction: column;
   height: 100vh;
   color: #fff;
-  padding: 50px;
+  padding: 50px 15px;
+
+  @media (max-width: map-get($nb-breakpoints, 'md')) {
+    height: auto;
+  }
 }
 
 .headline {

@@ -11,6 +11,9 @@ const mapState = state => ({
 export const ScoreBoardComponent = ({ white, red }) => (
   <div className={classes.container}>
     <div className={classes.cardContainer}>
+      <div className={classes.whiteLabel}>
+        White player
+      </div>
       <div className={classes.card}>
         <div className={classes.border} />
         {white}
@@ -18,6 +21,9 @@ export const ScoreBoardComponent = ({ white, red }) => (
     </div>
 
     <div className={classes.cardContainer}>
+      <div className={classes.redLabel}>
+        Red player
+      </div>
       <div className={classes.card}>
         <div className={classes.border} />
         {red}
