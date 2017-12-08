@@ -79,11 +79,11 @@ def subscribe():
 @app.route('/')
 def index():
     if os.environ.get('ENV', 'development') == 'development':
-        scriptFile = 'http://localhost:8889/app.js'
+        script_file = 'http://localhost:8889/app.js'
     else:
-        scriptFile = '/static/app.js'
+        script_file = '/static/app.js'
 
-    return render_template('index.html', scriptFile=scriptFile)
+    return render_template('index.html', script_file = script_file, table_status = table_status, white_score = white_score, red_score = red_score)
 
 
 if __name__ == "__main__":

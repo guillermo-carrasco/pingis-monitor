@@ -8,6 +8,13 @@
     <body>
       <!-- Begin page content -->
       <div id="root"></div>
-      <script type="text/javascript" src="{{ scriptFile }}"></script>
+      <script>
+        window.INITIAL_STATE = {
+          whiteScore: {{ white_score }},
+          redScore: {{ red_score }},
+          tableStatus: '{{ table_status }}',
+        };
+      </script>
+      <script type="text/javascript" src="{{ script_file }}"></script>
     </body>
 </html>

@@ -17,8 +17,8 @@ export const redChange = payload => ({
 })
 
 const initialState = Immutable.from({
-  white: 0,
-  red: 0,
+  white: window.INITIAL_STATE.whiteScore,
+  red: window.INITIAL_STATE.redScore,
 })
 
 export default (state = initialState, action) => {

@@ -11,7 +11,7 @@ const tableStatusChange = payload => ({
 })
 
 const initialState = Immutable.from({
-  status: 'Free',
+  status: window.INITIAL_STATE.tableStatus,
 })
 
 export default (state = initialState, action) => {
