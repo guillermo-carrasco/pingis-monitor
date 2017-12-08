@@ -2,6 +2,8 @@ import gevent
 import yaml
 import os
 
+from datetime import datetime
+
 from flask import Flask, render_template, request, Response
 from gevent.queue import Queue
 from gevent.wsgi import WSGIServer
@@ -12,6 +14,7 @@ subscriptions = []
 red_score = 0
 white_score = 0
 table_status = "Free"
+busy_since = 'null'
 
 
 class ServerSentEvent(object):
@@ -39,8 +42,13 @@ def save_status(data):
     global table_status
     global white_score
     global red_score
+    global busy_since
     if data.get('event') == 'TableStatus':
         table_status = data.get('data')
+        if table_status == 'Busy':
+            busy_since = datetime.now().isoformat()
+        else:
+            busy_since = 'null'
     elif data.get('event') == 'RedCounter':
         red_score = data.get('data')
     elif data.get('event') == 'WhiteCounter':
@@ -88,7 +96,11 @@ def index():
     else:
         script_file = '/static/app.js'
 
-    return render_template('index.html', script_file = script_file, table_status = table_status, white_score = white_score, red_score = red_score)
+    return render_template('index.html', script_file=script_file,
+                                         table_status=table_status,
+                                         white_score=white_score,
+                                         red_score=red_score,
+                                         busy_since=busy_since)
 
 
 if __name__ == "__main__":
