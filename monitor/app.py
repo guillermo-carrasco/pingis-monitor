@@ -73,6 +73,11 @@ def subscribe():
         except GeneratorExit:  # Or maybe use flask signals
             subscriptions.remove(q)
 
+    def notify():
+        for sub in subscriptions[:]:
+            sub.put("{ 'data': {} }")
+    gevent.spawn(notify)
+
     return Response(gen(), mimetype="text/event-stream")
 
 
