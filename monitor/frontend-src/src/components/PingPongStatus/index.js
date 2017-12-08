@@ -1,6 +1,7 @@
 import React from 'react'
 import { Status } from '../Status/index'
 import { ScoreBoard } from '../ScoreBoard/index'
+import Timer from '../Timer'
 
 import Background from './components/Background'
 
@@ -18,6 +19,7 @@ export class PingPongStatus extends React.Component {
           <div className={classes.icon} dangerouslySetInnerHTML={{ __html: pingPongIcon }} />
         </h1>
         <Status />
+        <Timer />
         <ScoreBoard />
       </div>
     )

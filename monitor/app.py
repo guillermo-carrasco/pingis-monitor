@@ -14,7 +14,7 @@ subscriptions = []
 red_score = 0
 white_score = 0
 table_status = "Free"
-busy_since = 'null'
+busy_since = ''
 
 
 class ServerSentEvent(object):
@@ -48,7 +48,7 @@ def save_status(data):
         if table_status == 'Busy':
             busy_since = datetime.now().isoformat()
         else:
-            busy_since = 'null'
+            busy_since = ''
     elif data.get('event') == 'RedCounter':
         red_score = data.get('data')
     elif data.get('event') == 'WhiteCounter':

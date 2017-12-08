@@ -12,12 +12,16 @@ const tableStatusChange = payload => ({
 
 const initialState = Immutable.from({
   status: window.INITIAL_STATE.tableStatus,
+  busySince: window.INITIAL_STATE.busySince ? window.INITIAL_STATE.busySince : null,
 })
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case TABLE_STATUS_CHANGE:
-      return state.set('status', action.payload)
+      return state.merge({
+        status: action.payload,
+        busySince: action.payload === 'Busy' ? (new Date()).toISOString() : '',
+      })
 
     default:
       return state
