@@ -8,13 +8,13 @@
 #define BUTTON_RED D7
 #define BUTTON_WHITE D6
 #define PRESSED LOW
-#define NUM_MESUREMENTS 10
+#define NUM_MESUREMENTS 15
 #define PERCENT_TO_BUSY 7
 #define MESUREMENT_DELAY 2000
 
 bool IS_BUSY = false;
 unsigned int motionInTime[NUM_MESUREMENTS];
-long doMesure = 0;
+int doMesure = 0;
 
 // Buttons logic/helpers
 bool red_pressed = false;
@@ -32,6 +32,8 @@ void setup() {
     digitalWrite(FREE,HIGH);
 
     doMesure = millis() + MESUREMENT_DELAY;
+    resetCounters();
+    sendStatus(false);
 
     // Set movement vector to 0 (free)
     for (int i=0; i<NUM_MESUREMENTS; i++)
@@ -39,9 +41,14 @@ void setup() {
 }
 
 void loop() {
+    int val = 0;
     // take mesurements every 2 seconds only, but don't block the main thread with a delay
     if (doMesure <= millis()) {
-        int val = digitalRead(SENSOR_INPUT);
+        if(digitalRead(SENSOR_INPUT) == HIGH){
+            val = 1;
+        } else {
+            val = 0;
+        }
         shiftAndAppend(val);
         int percent = numberOfPositives();
 
@@ -129,10 +136,12 @@ void sendStatus(bool busy){
     if(busy && !IS_BUSY) {
         IS_BUSY = true;
         Particle.publish("TableStatus","Busy");
+        setTimeArray(1);
     }
     else if(!busy && IS_BUSY) {
         IS_BUSY = false;
         Particle.publish("TableStatus","Free");
+        setTimeArray(0);
         resetCounters();
     }
 }
@@ -150,6 +159,11 @@ int numberOfPositives() {
 }
 
 
+void setTimeArray(int val){
+    for(int i = 0 ; i < NUM_MESUREMENTS -1 ; i++){
+        motionInTime[i] = val;
+    }
+}
 /* Shift left the values of an array of ints and append the passed value to the end
 */
 void shiftAndAppend(int val) {
