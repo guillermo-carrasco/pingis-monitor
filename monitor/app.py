@@ -96,11 +96,12 @@ def index():
     else:
         script_file = '/static/app.js'
 
-    return render_template('index.html', script_file=script_file,
-                                         table_status=table_status,
-                                         white_score=white_score,
-                                         red_score=red_score,
-                                         busy_since=busy_since)
+    return render_template('index.html',
+                           script_file=script_file,
+                           table_status=table_status,
+                           white_score=white_score,
+                           red_score=red_score,
+                           busy_since=busy_since)
 
 
 if __name__ == "__main__":
