@@ -2,13 +2,15 @@ import React from 'react'
 import { connect } from 'react-redux'
 import leftpad from 'left-pad'
 
+import './utils/moment'
+
 import classes from './style.scss'
 
 const mapState = state => ({
   date: state.status.busySince,
 })
 
-const getTime = date => new Date() - new Date(date)
+const getTime = date => new Date(moment().utc().format()) - new Date(date)
 const getMinutes = time => Math.floor(time / 60000)
 const getSeconds = time => Math.floor(time / 1000) - (getMinutes(time) * 60)
 const getMillis = time => (
